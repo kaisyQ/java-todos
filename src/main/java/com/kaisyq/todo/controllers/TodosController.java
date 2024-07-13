@@ -16,7 +16,7 @@ public final class TodosController {
     
     @GetMapping("")
     public String getList(Model model) {
-        model.addAttribute("message", "Thank you for visiting.");
+        model.addAttribute("messageq", "test text");
 
         return "index";
     }

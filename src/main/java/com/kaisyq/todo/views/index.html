@@ -1,13 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Spring Boot Thymeleaf Web Application</title>
+    <link th:href="@{/styles/main.css}" rel="stylesheet" />
 </head>
 <body>
-<h1>Welcome to Spring Boot Thymeleaf</h1>
-<p>
-    Hey there! <th:block th:text="${message}">message</th:block>
-</p>
+
+    <main class="main-content">
+
+        <div class="todo-wrapper">
+            <div class="todo">
+                <header class="todo-header">
+                    <h4 class="todo-title">Title of testing todo</h4>
+                    <h5 class="todo-subtitle">
+                        todo subtitle
+                    </h5>
+                </header>
+                <div class="todo-content">
+                    <p class="todo-content__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas repellendus sit dicta sunt quod enim voluptatibus dolores nostrum eaque excepturi? Quaerat ab eveniet provident delectus. Deserunt, ipsa excepturi. Libero, ab.</p>
+                </div>
+                <footer class="todo-footer">
+                    <div class="todo-author">
+                        <img src="https://avatars.mds.yandex.net/get-altay/1660410/2a00000168db5a5f23eb33243381314b3854/XXL_height" alt="" class="todo-author__image" />
+                        <p class="todo-author__name">Roma Koryagin</p>
+                    </div>
+                    <p class="todo-date">2024-01-02</p>
+                </footer>
+            </div>
+        </div>
+
+    </main>
 </body>
 </html>
