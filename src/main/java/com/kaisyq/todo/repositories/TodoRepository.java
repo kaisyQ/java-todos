@@ -7,6 +7,4 @@ import com.kaisyq.todo.entities.Todo;
 
 @Repository
 public interface TodoRepository extends JpaRepository<Todo, Integer> {
-
-    
 }

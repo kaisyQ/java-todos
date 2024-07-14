@@ -2,23 +2,30 @@ package com.kaisyq.todo.entities;
 
 import java.util.Date;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 public final class Todo {
     
     @Id
-    private final Integer id;
+    private Integer id;
 
-    private final String title;
+    @Nonnull
+    private String title;
 
-    private final String subtitle;
+    @Nonnull
+    private String subtitle;
 
-    private final String text;
+    @Nonnull
+    private String text;
 
-    private final Date createdAt;
+    @Nonnull
+    private Date createdAt;
 
 }

@@ -10,16 +10,16 @@
 
     <main class="main-content">
 
-        <div class="todo-wrapper">
+        <div th:each="todo : ${todos}" class="todo-wrapper">
             <div class="todo">
                 <header class="todo-header">
-                    <h4 class="todo-title">Title of testing todo</h4>
-                    <h5 class="todo-subtitle">
+                    <h4 th:text="${todo.title}" class="todo-title">Title of testing todo</h4>
+                    <h5 th:text="${todo.subtitle}" class="todo-subtitle">
                         todo subtitle
                     </h5>
                 </header>
-                <div class="todo-content">
-                    <p class="todo-content__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas repellendus sit dicta sunt quod enim voluptatibus dolores nostrum eaque excepturi? Quaerat ab eveniet provident delectus. Deserunt, ipsa excepturi. Libero, ab.</p>
+                <div th:text="${todo.text}" class="todo-content">
+                    <p class="todo-content__description">Todo text</p>
                 </div>
                 <footer class="todo-footer">
                     <div class="todo-author">
@@ -30,7 +30,6 @@
                 </footer>
             </div>
         </div>
-
     </main>
 </body>
 </html>
