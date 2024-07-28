@@ -20,7 +20,12 @@ public final class TodoService {
 
     public List<TodoDto> getList() {
         var entityList = this.todoRepository.findAll();
-        
+
         return this.todoListMapper.toDto(entityList);
     }
+
+    public void createTodo(TodoDto todo) {
+        this.todoRepository.findAll();
+    }
+
 }

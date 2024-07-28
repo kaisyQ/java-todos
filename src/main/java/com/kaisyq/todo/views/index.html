@@ -3,32 +3,49 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Spring Boot Thymeleaf Web Application</title>
+    <title>Spring Boot</title>
     <link th:href="@{/styles/main.css}" rel="stylesheet" />
 </head>
 <body>
 
-    <main class="main-content">
+    <main class="main-content-wrapper">
 
-        <div th:each="todo : ${todos}" class="todo-wrapper">
-            <div class="todo">
-                <header class="todo-header">
-                    <h4 th:text="${todo.title}" class="todo-title">Title of testing todo</h4>
-                    <h5 th:text="${todo.subtitle}" class="todo-subtitle">
-                        todo subtitle
-                    </h5>
-                </header>
-                <div th:text="${todo.text}" class="todo-content">
-                    <p class="todo-content__description">Todo text</p>
-                </div>
-                <footer class="todo-footer">
-                    <div class="todo-author">
-                        <img src="https://avatars.mds.yandex.net/get-altay/1660410/2a00000168db5a5f23eb33243381314b3854/XXL_height" alt="" class="todo-author__image" />
-                        <p class="todo-author__name">Roma Koryagin</p>
+        <div class="content">
+            <div class="todos">
+                <div th:each="todo : ${todos}" class="todo-wrapper">
+                    <div class="todo">
+                        <header class="todo-header">
+                            <h4 th:text="${todo.title}" class="todo-title">Title of testing todo</h4>
+                            <h5 th:text="${todo.subtitle}" class="todo-subtitle">
+                                todo subtitle
+                            </h5>
+                        </header>
+                        <div th:text="${todo.text}" class="todo-content">
+                            <p class="todo-content__description">Todo text</p>
+                        </div>
+                        <footer class="todo-footer">
+                            <div class="todo-author">
+                                <img src="https://avatars.mds.yandex.net/get-altay/1660410/2a00000168db5a5f23eb33243381314b3854/XXL_height" alt="" class="todo-author__image" />
+                                <p class="todo-author__name">Roma Koryagin</p>
+                            </div>
+                            <p class="todo-date">2024-01-02</p>
+                        </footer>
                     </div>
-                    <p class="todo-date">2024-01-02</p>
-                </footer>
+                </div>
             </div>
+
+            <div class="create-todo-form-wrapper">
+                <form class="create-todo-form" method="post">
+                    <input class="input" name="title" required placeholder="Title"/>
+                    <input class="input" name="subtitle" required placeholder="Subtitle" />
+                    <input class="input" name="author" required placeholder="Author" />
+        
+                    <textarea class="textarea" required placeholder="Text"></textarea>
+        
+                    <button class="form__control">Create Todo</button>
+                </form>
+            </div>
+
         </div>
     </main>
 </body>

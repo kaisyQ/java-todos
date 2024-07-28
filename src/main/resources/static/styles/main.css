@@ -21,9 +21,27 @@ body {
     font-size: 18px;
 }
 
-.main-content {
+input, textarea, button {
+    outline: none;
+    border: none;
+}
+
+.main-content-wrapper {
     flex-grow: 1;
     margin: 30px 0;
+    width: 100%;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+}
+
+.todos {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 .todo-wrapper {
@@ -34,7 +52,7 @@ body {
     cursor: pointer;
     transition: .3s ease-in-out;
     max-width: 400px;
-    width: 100%;
+    width: calc(100% / 3 - 20px);
 }
 
 .todo-wrapper:hover {
@@ -95,4 +113,74 @@ body {
 .todo-date {
     display: flex;
     align-items: center;
+}
+
+
+.input {
+    width: 100%;
+
+    padding: 20px 10px;
+    background-color: #000;
+    color: #fff;
+    border: 2px solid rgba(71, 230, 193, 0.8);
+    border-radius: 20px;
+    font: inherit;
+    transition: .3s ease-in-out;
+}
+
+.input:focus {
+    border: 2px solid rgba(71, 230, 193, 0.8);
+    border-radius: 10px;
+    transition: .3s ease-in-out;
+    border-color: rgba(65, 25, 156, 0.8);
+}
+
+.textarea {
+    padding: 20px 10px;
+    width: 100%;
+    min-height: 60px;
+    background-color: #000;
+    color: #fff;
+    border: 2px solid rgba(71, 230, 193, 0.8);
+    border-radius: 20px;
+    font: inherit;
+    resize: vertical;
+}
+
+.textarea:focus {
+    border: 2px solid rgba(71, 230, 193, 0.8);
+    border-radius: 10px;
+    transition: .3s ease-in-out;
+    border-color: rgba(65, 25, 156, 0.8);
+}
+
+.create-todo-form-wrapper {
+    min-width: 200px;
+    max-width: 468px;
+    margin: 10px auto;
+    padding: 25px;
+    width: 100%;
+}
+
+.create-todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+
+.form__control {
+    background-color: rgba(71, 230, 193, 0.8);
+    color: #000;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font: inherit;
+
+    cursor: pointer;
+}
+
+.form__control:hover {
+    background-color: rgba(65, 25, 156, 0.8);
+    color: #fff;
+    transition: .3s ease-in-out;
 }

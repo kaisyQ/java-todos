@@ -1,0 +1,21 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "kaisyQ <85626015+kaisyQ@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "^4.4.5"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.16",
+    "fast-glob": "^3.3.2",
+    "rollup-plugin-glob": "^1.0.2",
+    "sass": "^1.69.5",
+    "vite-plugin-svg-icons": "^2.0.1"
+  }
+}
