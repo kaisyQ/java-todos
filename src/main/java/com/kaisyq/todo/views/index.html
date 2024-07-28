@@ -35,12 +35,12 @@
             </div>
 
             <div class="create-todo-form-wrapper">
-                <form class="create-todo-form" method="post">
+                <form action="rest/v1/todos" class="create-todo-form" method="post" onsubmit="sendRequestByFormData(this, event)">
                     <input class="input" name="title" required placeholder="Title"/>
                     <input class="input" name="subtitle" required placeholder="Subtitle" />
                     <input class="input" name="author" required placeholder="Author" />
         
-                    <textarea class="textarea" required placeholder="Text"></textarea>
+                    <textarea name="text" class="textarea" required placeholder="Text"></textarea>
         
                     <button class="form__control">Create Todo</button>
                 </form>
@@ -48,5 +48,7 @@
 
         </div>
     </main>
+
+    <script type="text/javascript" th:src="@{/styles/main.js}"></script>
 </body>
 </html>

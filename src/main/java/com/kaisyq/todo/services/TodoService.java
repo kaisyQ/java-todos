@@ -19,13 +19,15 @@ public final class TodoService {
     private final TodoMapper todoMapper;
 
     public List<TodoDto> getList() {
-        var entityList = this.todoRepository.findAll();
+        final var entityList = this.todoRepository.findAll();
 
         return this.todoListMapper.toDto(entityList);
     }
 
-    public void createTodo(TodoDto todo) {
-        this.todoRepository.findAll();
+    public TodoDto save(final TodoDto todo) {
+        final var entity = this.todoMapper.toEntity(todo);
+
+        return this.todoMapper.toDto(this.todoRepository.saveAndFlush(entity));
     }
 
 }

@@ -1,10 +1,13 @@
 package com.kaisyq.todo.dtos;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@RequiredArgsConstructor
 public final class TodoDto {
     private final Integer id;
     private final String title;
