@@ -20,49 +20,84 @@ public final class TodoService {
     private final TodoListMapper todoListMapper;
     private final TodoMapper todoMapper;
 
-    private final String DEFAULT_VALIDATE_MESSAGE_FORMAT = "Todo with id:%d not found!";
+    private final String TODO_NOT_FOUND_MESSAGE_FORMAT = "Todo with id:%d not found!";
 
+    /**
+     * Retrieves all TodoDto objects from the repository and maps them to a list of TodoDto objects.
+     *
+     * @return  A list of TodoDto objects representing all Todo entities in the repository
+     */
     public List<TodoDto> getList() {
+        // Retrieve all Todo entities from the repository
         final var entityList = this.todoRepository.findAll();
+        
+        // Map the list of Todo entities to a list of TodoDto objects
         return this.todoListMapper.toDto(entityList);
     }
 
+    /**
+     * Saves a new TodoDto object to the repository.
+     *
+     * @param  todo  The TodoDto object to save
+     * @throws None
+     */
     public void save(@NonNull final TodoDto todo) {
+        // Convert the TodoDto object to an entity
         final var entity = this.todoMapper.toEntity(todo);
         
+        // Save and flush the entity to the repository
         this.todoRepository.saveAndFlush(entity);
     }
 
+    /**
+     * Retrieves a TodoDto object with the specified ID.
+     * 
+     * @param  id  The ID of the TodoDto object to retrieve
+     * @return     The TodoDto object with the specified ID
+     * @throws ValidateException If the TodoDto object with the specified ID is not found
+     */
     public TodoDto getById(final int id) {
-        final var todo = this.todoRepository.findById(id);
+        // Find the TodoDto object with the specified ID
+        final var todo = this.todoRepository.findById(id)
+            .orElseThrow(() -> new ValidateException(
+                String.format(TODO_NOT_FOUND_MESSAGE_FORMAT, id))); // Throw an exception if the TodoDto object is not found
 
-        if (todo.isEmpty()) {
-            throw new ValidateException(String.format(DEFAULT_VALIDATE_MESSAGE_FORMAT, id));
-        }
-
-        return todo.map(this.todoMapper::toDto)
-            .orElseThrow(() -> new ValidateException("Unexpected error occurred"));
+        // Convert the Todo entity to a TodoDto object and return it
+        return this.todoMapper.toDto(todo);
     }
 
+    /**
+     * Updates a todo item with the specified ID.
+     * 
+     * @param  id      The ID of the todo item to update
+     * @param  updatedTodoDto The updated todo item data
+     * @throws ValidateException If the todo item with the specified ID is not found
+     */
+    public void update(final int id, @NonNull final TodoDto updatedTodoDto) throws ValidateException {
+        // Find the todo item with the specified ID
+        final var todoToUpdate = todoRepository.findById(id)
+            .orElseThrow(() -> new ValidateException(
+                String.format(TODO_NOT_FOUND_MESSAGE_FORMAT, id)));
 
-    public void update(final int id, final TodoDto updatedTodoDto) {
-        final var todoToUpdate = todoRepository.findById(id);
-
-        if (todoToUpdate.isEmpty()) {
-            String errorMessage = String.format(DEFAULT_VALIDATE_MESSAGE_FORMAT, id);
-            throw new ValidateException(errorMessage);
-        }
-
+        // Convert the updated todo item data to an entity
         final var updatedTodo = todoMapper.toEntity(updatedTodoDto);
 
-        todoToUpdate.get().setTitle(updatedTodo.getTitle());
-        todoToUpdate.get().setSubtitle(updatedTodo.getSubtitle());
-        todoToUpdate.get().setText(updatedTodo.getText());
+        // Update the properties of the todo item
+        todoToUpdate.setTitle(updatedTodo.getTitle());
+        todoToUpdate.setSubtitle(updatedTodo.getSubtitle());
+        todoToUpdate.setText(updatedTodo.getText());
         
-        todoRepository.saveAndFlush(todoToUpdate.get());
+        // Save and flush the updated todo item to the repository
+        todoRepository.saveAndFlush(todoToUpdate);
     }
 
+    /**
+     * Deletes a Todo item from the repository by its ID.
+     *
+     * @param  id  the ID of the Todo item to delete
+     */
     public void delete(final int id) {
+        // Delete the Todo item from the repository by its ID
         this.todoRepository.deleteById(id);
     }
 
